@@ -55,28 +55,22 @@ $(function() {
     });
   });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
-
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
-
-    describe('Initial Entries',function() {
-        beforeEach(function(done) {
-          loadFeed(0, function() {
-            done();
-          });
+  describe('Initial Entries',function() {
+    //Assegura carregamento de loadFeed.
+      beforeEach(function(done) {
+        loadFeed(0, function() {
+        done();
         });
-
-        it('have at least one entry', function(done) {
-          var numEntries = $('.feed .entry').length;
-          console.log(numEntries);
-          expect(numEntries).toBeGreaterThan(0);
-          done();
-        });
+      });
+      //Testa para saber se pelo menos existe uma entrie no feed.
+      it('Have at least one entry', function(done) {
+        //Após carregamento de feed, guarda na variável 'numEntries' o
+        // tamanho de entradas no feed.
+        var numEntries = $('.feed .entry').length;
+        //Verifica se realmente o valor de entradas é maior que zero.
+        expect(numEntries).toBeGreaterThan(0);
+        done();
+      });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
