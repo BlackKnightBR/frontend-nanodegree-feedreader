@@ -73,11 +73,26 @@ $(function() {
       });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection',function() {
+      //Variável que vai referenciar o conteúdo do feed.
+      var currentContent;
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+      beforeEach(function(done) {
+        //Atribuição de elemento 'feed' a variável 'currentContent'.
+        currentContent = $('.feed').html();
+        //Assegura carregamento do feed e independência de suites anteriores.
+        loadFeed(1, function() {
+          done();
+        });
+      });
+      //Verifica se novo conteúdo é diferente do conteúdo anterior.
+      it('Changes the content displayed', function(done) {
+        //Referência conteudo de 'feed' a variável 'newContent'.
+        var newContent = $('.feed').html();
+        //Testa para que os conteúdos sejam diferentes.
+        expect(currentContent).not.toBe(newContent);
+        done();
+      });
+    });
 
 }());
