@@ -21,7 +21,7 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
+        it('Are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -31,28 +31,41 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+         it('Should check all the urls and validate existance of content', function() {
+           for (var i = 0; i < allFeeds.length; i++) {
+             expect(allFeeds[i].url).toBeDefined();
+             expect(allFeeds[i].url.length).not.toBe(0);
+           }
+         });
 
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+         it('Should check all the names and validate existance of content', function() {
+           for (var i = 0; i < allFeeds.length; i++) {
+             expect(allFeeds[i].name).toBeDefined();
+             expect(allFeeds[i].name.length).not.toBe(0);
+           }
+         });
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    describe('The Menu',function() {
+      var body = $('body'),
+       iconMenu = $('.menu-icon-link');
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+   it('Hidden by default', function() {
+     expect(body.hasClass('menu-hidden')).toBe(true);
+   });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+   it('Visibility changes when clicked', function() {
+     var currentClass = body.attr('class')
+         expectedNewClass = (body.hasClass('menu-hidden')) ? '' : 'menu-hidden';
+
+     iconMenu.click();
+     expect(body.attr('class')).toBe(expectedNewClass);
+
+     iconMenu.click();
+     expect(body.attr('class')).toBe(currentClass);
+   });
+    });
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
@@ -69,4 +82,5 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
 }());
